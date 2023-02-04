@@ -1,32 +1,17 @@
-import express from "express";
-import { graphqlHTTP } from "express-graphql";
-import { buildSchema } from "graphql";
+import configLogger from "@logger";
+import http from "http";
+import log from "loglevel";
+import app from "./app";
 
-// Construct a schema, using GraphQL schema language
-const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
+configLogger();
 
-// The root provides a resolver function for each API endpoint
-const root = {
-  hello: () => {
-    return "Hello world!";
-  },
-};
+const port = process.env.PORT ?? "4000";
+app.set("port", port);
 
-const app = express();
+const server = http.createServer(app);
+server.listen(port);
 
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema: schema,
-    rootValue: root,
-    graphiql: true,
-  })
-);
-app.listen(process.env.PORT);
-console.log(
-  `Running a GraphQL API server at http://localhost:${process.env.PORT}/graphql`
+log.debug(
+  "Running a GraphQL API server at:",
+  `\t- http://localhost:${port}/playground`
 );
