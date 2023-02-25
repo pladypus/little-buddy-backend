@@ -1,4 +1,7 @@
 /node_modules
 
+# Test coverage files
+/coverage
+
 .env*
 !.env*.encrypted
