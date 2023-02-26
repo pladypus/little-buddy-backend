@@ -1,0 +1,5 @@
+type Dog @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  name: String!
+  events: String! # todo: should be an array
+}

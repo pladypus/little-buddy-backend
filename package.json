@@ -8,11 +8,13 @@
     "start": "NODE_ENV=production nodemon ./src/server.ts",
     "dev": "NODE_ENV=development nodemon ./src/server.ts",
     "test": "NODE_ENV=test jest",
+    "test:ci": "./scripts/test-ci.sh",
     "test:coverage": "NODE_ENV=test jest --coverage",
     "test:watch": "NODE_ENV=test jest --watch",
     "lint": "eslint . --ext .ts",
-    "env:decrypt": "bash ./utils/scripts/env-decrypt.sh",
-    "env:encrypt": "bash ./utils/scripts/env-encrypt.sh",
+    "env:decrypt": "bash ./scripts/env-decrypt.sh",
+    "env:encrypt": "bash ./scripts/env-encrypt.sh",
+    "mock": "amplify mock",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
@@ -24,6 +26,7 @@
     "serverless-http": "^3.1.1"
   },
   "devDependencies": {
+    "@aws-amplify/cli": "^10.7.3",
     "@types/express": "^4.17.15",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.11.18",
@@ -39,6 +42,7 @@
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
     "graphql-playground-middleware-express": "^1.7.23",
+    "graphql-request": "^5.1.0",
     "graphql-schema-linter": "^3.0.1",
     "jest": "^29.4.1",
     "nodemon": "^2.0.20",
