@@ -1,16 +1,15 @@
-type Dog
+type User
   @model
   @auth(
     rules: [
-      # { allow: private }
+      # { allow: owner, ownerField: "cognitoId" }
       # { allow: public, operations: [read] }
       { allow: public }
     ]
   ) {
   id: ID!
+  cognitoId: ID!
   name: String!
-  notes: String
-  events: [Event] @hasMany(indexName: "byDog", fields: ["id"])
   family: Family @belongsTo(fields: ["familyId"])
-  familyId: ID! @index(name: "dogByFamily")
+  familyId: ID! @index(name: "userByFamily")
 }

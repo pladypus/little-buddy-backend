@@ -1,0 +1,21 @@
+type Event
+  @model
+  @auth(
+    rules: [
+      # { allow: private, operations: [create, read] }
+      # { allow: public, operations: [read] }
+      { allow: public }
+    ]
+  ) {
+  id: ID!
+  type: eventType!
+  dog: Dog @belongsTo(fields: ["dogId"])
+  dogId: ID! @index(name: "byDog")
+}
+
+enum eventType {
+  pee
+  poop
+  walk
+  feed
+}

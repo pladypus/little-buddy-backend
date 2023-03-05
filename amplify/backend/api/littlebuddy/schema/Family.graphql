@@ -1,0 +1,14 @@
+type Family
+  @model
+  @auth(
+    rules: [
+      # { allow: owner, ownerField: "ownerId" }
+      # { allow: public, operations: [read] }
+      { allow: public }
+    ]
+  ) {
+  id: ID!
+  ownerId: ID!
+  dogs: [Dog] @hasMany(indexName: "dogByFamily", fields: ["id"])
+  members: [User] @hasMany(indexName: "userByFamily", fields: ["id"])
+}
