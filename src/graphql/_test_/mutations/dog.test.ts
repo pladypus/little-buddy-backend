@@ -1,22 +1,18 @@
-import { gql } from "graphql-request";
-import { client } from "~/setupTests";
+import { createDogMT, createFamilyMT } from "../helpers";
 
 describe("Dog Mutations", () => {
   test("should create a new dog", async () => {
-    const CREATE_DOG = gql`
-      mutation {
-        createDog(input: { name: "Apple", events: "Bathroom" }) {
-          id
-        }
-      }
-    `;
+    const familyRes = await createFamilyMT();
 
-    const res = await client.rawRequest(CREATE_DOG);
+    const res = await createDogMT(familyRes.data.createFamily.id);
 
     expect(res.status).toEqual(200);
     expect(res.data).toMatchObject({
       createDog: {
         id: expect.any(String),
+        family: {
+          ownerId: expect.any(String),
+        },
       },
     });
   });
