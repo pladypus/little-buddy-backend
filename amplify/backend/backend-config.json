@@ -1,13 +1,30 @@
 {
   "api": {
     "littlebuddy": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "littlebuddyf9e9edf8"
+        }
+      ],
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [],
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authlittlebuddyf9e9edf8"
+              }
+            }
+          ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDate": "2023-06-18T19:54:19.353Z",
+              "apiKeyExpirationDays": 60,
+              "description": "public key"
             },
             "authenticationType": "API_KEY"
           }
